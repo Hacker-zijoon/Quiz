@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ quiz.title }}의{{ question.sequence }}번 문제</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    </head>
+
+    <body>
+
+        <h3>{{ quiz.title }}의{{ question.sequence }}번 문제</h3>
+
+        <div>{{ question.title}}</div>
+
+        {%if question.image %}
+            <p><img src="{{ question.image.url }}"/> </p>
+        {% endif %}
+
+        <form method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden" name="previous" value="{{ previous }}" />
+        {% for answer in answers %}
+<p>
+    <input type="radio" name="sequence" value="{{answer.sequence}}" />
+    {{ answer.content }}
+</p>
+        {% endfor %}
+
+        <button type="submit">
+            {% if has_next %}
+            다음 문제로 이동!
+            {% else %}
+            결과보기로 이동!
+            {%　endif %}
+        </button>
+
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>콩콩</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    </head>
+
+    <body class="container">
+        {% for quiz in quizzes %}
+            <div class="quiz_container">
+                <span>{{quiz.pk}}</span>
+                <a href ="/quiz/{{ quiz.pk}}/">
+
+                {% if quiz.image %}
+
+                <img src="{{ quiz.image.url }}" alt="" />
+                {% endif %}
+                <h3>{{quiz.title}}</h3>
+
+                </a>
+            </div>
+            {% endfor %}
+
+        <p>Current Page : {{ page }}</p>
+
+    </body>
+</html>

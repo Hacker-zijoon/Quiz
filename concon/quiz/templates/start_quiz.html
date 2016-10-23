@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>콩콩</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    </head>
+
+    <body class="container">
+        <div class="quiz_container">
+            <h3> {{ quiz.title }} <h3>
+
+            {% if quiz.image %}
+            <p><img src="{{ quiz.image.url }}" alt="" /></p>
+            {% endif %}
+
+            <p> 자 {{ quiz.pk }}번 퀴즈를 시작해볼까? </p>
+
+            {{ username }}
+
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-lg">퀴즈 시작!</button>
+            </form>
+
+        </div>
+    </body>
+</html>
