@@ -12,7 +12,7 @@ class Quiz(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{}'.format(self.id)
+        return '{pk}'.format(pk=self.id)
 
 class Question(models.Model):
     title = models.CharField(max_length = 250)
@@ -26,7 +26,7 @@ class Question(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{}:{}'.format(self.sequence,self.title)
+        return '{}:{}'.format(self.sequence, self.title)
 
 class Answer(models.Model):
     question = models.ForeignKey(Question)
@@ -35,9 +35,6 @@ class Answer(models.Model):
     code = models.CharField(max_length=2)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return '{pk}'.format(pk=self.id)
 
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz)
@@ -56,3 +53,6 @@ class UserScore(models.Model):
     quiz = models.ForeignKey(Quiz)
     answer = models.ForeignKey(Answer)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{pk}'.format(pk=self.id)

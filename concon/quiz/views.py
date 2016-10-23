@@ -68,10 +68,10 @@ def view_question(request, pk, seq):
         previous_info = None
     # pk = Quiz의 기본키
     # seq = Question의 순번
-
+    seq = int(seq)
     quiz_info = Quiz.objects.get(id=pk)
     question_info = Question.objects.get(quiz=quiz_info, sequence=seq)
-    has_next = Question.objects.filter(quiz=quiz_info, sequence=int(seq)+1).exists()
+    has_next = Question.objects.filter(quiz=quiz_info, sequence=seq+1).exists()
 
     answer_list = Answer.objects.filter(question=question_info).order_by('sequence')
 
